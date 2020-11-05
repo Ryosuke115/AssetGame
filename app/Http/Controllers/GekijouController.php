@@ -22,7 +22,7 @@ class GekijouController extends Controller
             ->where('invest_amount', '>', 0)->get();
         
         $stock = $stocks->pluck('invest_amount');
-        $values = $stock->all();
+        $values = $stock->all();//クエリから取ったDBデータはコレクションインスタンスなので配列に変更する
         $last = array_key_last($values);
         $sachiko_mikan = 0;
         
