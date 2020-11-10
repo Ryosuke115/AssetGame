@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStuckToUsersTable extends Migration
+class AddStockUnitsToAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class AddStuckToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('stock')->default(30000);
+        Schema::table('assets', function (Blueprint $table) {
+           $table->bigInteger('stock_units')->default(10);
         });
     }
- 
+
     /**
      * Reverse the migrations.
      *
@@ -25,8 +25,8 @@ class AddStuckToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table){
-            
+        Schema::table('assets', function (Blueprint $table) {
+            //
         });
     }
 }

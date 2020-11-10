@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Code;
 use App\User;
+use App\Account;
 use App\Letter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -72,6 +73,12 @@ class CodeController extends Controller
         $user_id = $request->input('user_id');
         $asset_number = $request->input('asset_number');
         $invest_amount = $request->input('invest_amount');
+        $record = Account::where('user_id', $user_id)
+                  ->where('asset_number', $asset_number)->get();
+        
+        $stock_units = DB::table('assets')
+            ->where('id', $asset_number)
+            ->value('stock_units');
         
         DB::table('codes')
             ->insert(
@@ -81,6 +88,23 @@ class CodeController extends Controller
         DB::table('assets')
             ->where('id', $asset_number)
             ->increment('asset_sum', $invest_amount);
+        
+        if (!$record) {//そのユーザーの特定の資産の口座がまだ作成されていない場合、口座を作成する
+        DB::table('accounts')
+            ->insert(
+            ['user_id' => $user_id, 
+             'asset_number' => $asset_number, 
+             'account_amount' => 0,
+             'stock_unit' => $stock_units
+            ]
+        );
+    }
+            
+    
+        DB::table('accounts')
+            ->where('user_id', $user_id)
+            ->where('asset_number', $asset_number)
+            ->increment('account_amount', $invest_amount);
         
         return redirect('/code/form');
     }
