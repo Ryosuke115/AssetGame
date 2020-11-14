@@ -41,5 +41,5 @@ Route::get('/asset/mikan', 'CodeController@mikan_view');
 Route::post('/asset/mikan', 'CodeController@mikan_stock');
 
 
-
+Route::get('market', 'MarketController@review');
 

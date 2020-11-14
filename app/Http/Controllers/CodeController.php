@@ -73,8 +73,10 @@ class CodeController extends Controller
         $user_id = $request->input('user_id');
         $asset_number = $request->input('asset_number');
         $invest_amount = $request->input('invest_amount');
-        $record = Account::where('user_id', $user_id)
-                  ->where('asset_number', $asset_number)->get();
+        $asset_name = DB::table('assets')->where('id', $asset_number)->value('asset_name');
+        
+        $record = Account::where('user_id', $user_id)//Accountテーブルから認証ユーザーの特定資産口座のカラムを格納
+                  ->where('asset_number', $asset_number)->first();
         
         $stock_units = DB::table('assets')
             ->where('id', $asset_number)
@@ -95,7 +97,8 @@ class CodeController extends Controller
             ['user_id' => $user_id, 
              'asset_number' => $asset_number, 
              'account_amount' => 0,
-             'stock_unit' => $stock_units
+             'stock_unit' => $stock_units,
+             'asset_name' => $asset_name
             ]
         );
     }

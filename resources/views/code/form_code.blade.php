@@ -16,6 +16,7 @@
  <p>サチコ国：<br>
  <select name="asset_number">
      <option value="1">みかん</option>
+     <option value="2">じゃがいも</option>
      <option value="3">牛肉</option>
      <option value="4" selected>製鉄</option>
      <option value="5">国防力</option>

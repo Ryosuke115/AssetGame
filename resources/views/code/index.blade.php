@@ -27,7 +27,7 @@
 
    <table border="2">
      <tr><th>データ/</th></tr>
-       @foreach ($items as $key=>$item)<!-- コントローラから渡された$itemsを$itemに格納 -->
+       @foreach ($items as $key=>$item)<!-- コントローラから渡された$itemsを$key=>$itemの連想配列の形で格納 -->
            <tr>
             <td>{{$item->getData()}}</td><!--codecontrollerのuse codeに繋がっているのでcode.phpのgetdataがつかえる？-->
            </tr>
