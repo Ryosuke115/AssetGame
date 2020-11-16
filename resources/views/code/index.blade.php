@@ -36,6 +36,7 @@
 
 <?php echo date('Y:D-H-i'); ?>
 <p>{{ var_dump($pin) }}</p>
+<p>{{ var_dump($time) }}</p>
 @endsection
 
 @section('footer')

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Code;
 use App\User;
 use App\Account;
-use App\Letter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -42,7 +41,9 @@ class CodeController extends Controller
         $bee = 0;
         $bea = $beaff[1];
         
-        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last]);
+        $time = Code::where('user_id', 2)->where('asset_number', 5)->value('created_at');
+        
+        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time]);
         
     }
     
@@ -71,7 +72,7 @@ class CodeController extends Controller
     public function codecreate(Request $request) {
         $this->validate($request, Code::$rules);
         $user_id = $request->input('user_id');
-        $asset_number = $request->input('asset_number');
+        $asset_number = $request->input('asset_number');        
         $invest_amount = $request->input('invest_amount');
         $asset_name = DB::table('assets')->where('id', $asset_number)->value('asset_name');
         

@@ -6,10 +6,13 @@
 
 <form action="/market" method="post">
  @csrf
+    <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+    
     <p>銘柄選択</p>
-    <select name="market_to">
+    <select name="market_asset">
     @foreach ($accounts as $account_number)
         <option value="<?php echo  $account_number?>">{{ array_shift($asset_name) }}</option>
+        
     @endforeach
     </select>
     

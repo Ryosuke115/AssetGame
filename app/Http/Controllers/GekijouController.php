@@ -38,3 +38,4 @@ class GekijouController extends Controller
                                         ]);
     }
 }
++
