@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('appp', 'PowndadAsset')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,6 +19,7 @@
                     <a href="/asset/menu">現在の市況</a><br>
                     <a href="/schedule">Pown社決算スケジュール</a><br><!--フォントのデザインでサイト色を出す-->
                     <a href="/market">売買取引注文を行う</a>
+                    <div id="app"><my-component></my-component></div>
                 </div>
             </div>
         </div>

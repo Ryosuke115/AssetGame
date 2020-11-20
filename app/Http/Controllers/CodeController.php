@@ -46,7 +46,7 @@ class CodeController extends Controller
         return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time]);
         
     }
-    
+ 
     
     
     public function add(Request $request) {
@@ -139,4 +139,6 @@ class CodeController extends Controller
         
         return redirect('/asset/mikan');
     }
+    
+    
 }

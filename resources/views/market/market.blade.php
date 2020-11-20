@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('appp', '現在の市場状況')
+@section('appp', 'PowndadAsset-注文')
 
 @section('content')
 

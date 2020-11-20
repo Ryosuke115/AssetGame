@@ -37,6 +37,12 @@
 <?php echo date('Y:D-H-i'); ?>
 <p>{{ var_dump($pin) }}</p>
 <p>{{ var_dump($time) }}</p>
+
+<div id="app">
+    <example-component></example-component>
+    <my-component></my-component>
+
+</div>
 @endsection
 
 @section('footer')
