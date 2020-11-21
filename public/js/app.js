@@ -1950,27 +1950,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/code/json').then(function (resonse) {
-      _this.users = response.date;
-      _this.msg = '取得';
-    });
-  },
   data: function data() {
     return {
-      msg: 'wait....',
-      name: '',
-      users: []
+      tasks: []
     };
+  },
+  methods: {
+    getTasks: function getTasks() {
+      var _this = this;
+
+      axios.get('/api/tasks', {
+        params: {
+          id: '1'
+        }
+      }).then(function (response) {
+        _this.tasks = response.data;
+        console.log(response);
+      })["catch"](function (response) {
+        console.log(response);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getTasks();
   }
 });
 
@@ -37601,27 +37604,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("p", [_vm._v(_vm._s(_vm.msg))]),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.users, function(user) {
-        return _c("li", [
-          _vm._v(
-            "\n         " +
-              _vm._s(user.id) +
-              ": " +
-              _vm._s(user.name) +
-              "\n         "
-          )
-        ])
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    _vm._l(_vm.tasks, function(task) {
+      return _c("tr", [
+        _c("th", [_vm._v(_vm._s(task.id))]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(task.name))])
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -6,6 +6,8 @@
 
         <title>Laravel</title>
 
+        
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -80,6 +82,9 @@
             @endif
 
             <div class="content">
+                <div id="app">
+                <my-component></my-component>
+                </div>
                 <div class="title m-b-md">
                     Laravel
                 </div>
@@ -96,5 +101,7 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </body>
 </html>

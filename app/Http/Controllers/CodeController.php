@@ -140,5 +140,8 @@ class CodeController extends Controller
         return redirect('/asset/mikan');
     }
     
+    public function tasks(Request $request) {
+        return User::all();
+    }
     
 }
