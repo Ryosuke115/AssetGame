@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/tasks','CodeController@tasks');
+Route::get('/assets', 'AssetController@assets');
+
+Route::post('/select/','AssetController@selectAs');

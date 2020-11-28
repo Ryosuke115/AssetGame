@@ -39,12 +39,9 @@
 <p>{{ var_dump($time) }}</p>
 
 <div id="app">
-    <example-component></example-component>
     <my-component></my-component>
-
 </div>
+
+
 @endsection
 
-@section('footer')
-copyright 2020 andou
-@endsection

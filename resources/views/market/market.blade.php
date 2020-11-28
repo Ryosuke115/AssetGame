@@ -11,8 +11,9 @@
     <p>銘柄選択</p>
     <select name="market_asset">
     @foreach ($accounts as $account_number)
-        <option value="<?php echo  $account_number?>">{{ array_shift($asset_name) }}</option>
-        
+        <option value="<?php echo  $account_number?>">
+            {{ array_shift($asset_name) }}
+        </option>
     @endforeach
     </select>
     

@@ -6,7 +6,9 @@
 
         <title>Laravel</title>
 
-        
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -88,7 +90,7 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
+                
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -103,5 +105,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+        
     </body>
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Asset;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AssetController extends Controller
@@ -39,5 +40,27 @@ class AssetController extends Controller
     
     public function asset_menu(Request $request) {
         return view('asset.asset_menu');
+    }
+    
+    
+    public function asset_invest_market(Request $request) {
+        $asset = DB::table('assets')->pluck('asset_name');
+        $assets = $asset->all();
+        $user_id = Auth::id();
+        return view('market.asset_invest_market', ['assets' => $assets,
+                                                   'user_id' => $user_id]);
+    }
+    
+    public function assets(Request $request) {
+        return Asset::all();
+    }
+    
+    public function selectAs(Request $request) {
+        $select = $request->title;
+        $selected = DB::table('assets')->where('asset_name', $select)
+            ->value('issue_shares');
+        $select_sum = DB::table('assets')->where('asset_name', $select)
+            ->value('asset_sum');
+        return [$selected ,$select_sum];
     }
 }
