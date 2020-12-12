@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('appp', '投資先選択画面')
+@section('title', 'Pawn dadaAsset|投資先選択画面')
 
 
 @section('menubar')
@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+
+
 <form action="/code/form" method="post">
  @csrf
  <input type="hidden" name="user_id" value="<?php echo $prove_user ?>">

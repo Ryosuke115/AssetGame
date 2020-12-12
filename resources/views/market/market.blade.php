@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('appp', 'PowndadAsset-注文')
+@section('title', 'Pawn dadAsset|注文')
 
 @section('content')
 

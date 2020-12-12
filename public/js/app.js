@@ -1923,6 +1923,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1953,7 +1962,6 @@ __webpack_require__.r(__webpack_exports__);
         title: this.selected
       }).then(function (response) {
         _this2.asset_data = response.data;
-        _this2.selected = '';
       });
     }
   },
@@ -37628,51 +37636,103 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
-      "select",
+      "div",
       {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.selected,
-            expression: "selected"
-          }
-        ],
-        attrs: { id: "asset_select", name: "asset_select" },
-        on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.selected = $event.target.multiple
-              ? $$selectedVal
-              : $$selectedVal[0]
-          }
+        staticStyle: {
+          display: "grid",
+          "grid-template-rows": "50px 50px 50px 50px 70px 70px 80px 80px",
+          "grid-template-columns":
+            "110px 110px 110px 110px 160px 160px 160px 160px"
         }
       },
-      _vm._l(_vm.assets, function(asset) {
-        return _c("option", [_vm._v(_vm._s(asset.asset_name))])
-      }),
-      0
-    ),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v(_vm._s(_vm.selected))]),
-    _vm._v(" "),
-    _c("p", { staticStyle: { color: "red" } }, [
-      _vm._v(_vm._s(_vm.asset_data[0]))
-    ]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.asset_data[1]))]),
-    _vm._v(" "),
-    _c("button", { attrs: { type: "button" }, on: { click: _vm.selectAs } }, [
-      _vm._v("じっこうする")
-    ])
+      [
+        _c(
+          "h3",
+          { staticStyle: { "grid-row": "1/2", "grid-columns": "1/2" } },
+          [_vm._v("資産板")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected,
+                expression: "selected"
+              }
+            ],
+            staticStyle: { "grid-row": "3/4", "grid-column": "1/2" },
+            attrs: { id: "asset_select", name: "asset_select" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selected = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.assets, function(asset) {
+            return _c("option", [_vm._v(_vm._s(asset.asset_name))])
+          }),
+          0
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", { staticStyle: { "grid-row": "2/3", "grid-column": "6/7" } }, [
+          _vm._v(_vm._s(_vm.asset_data[2]))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticStyle: { "grid-row": "3/4", "grid-column": "6/7" } }, [
+          _vm._v("最低購入単位"),
+          _c("br"),
+          _vm._v(_vm._s(_vm.asset_data[3]))
+        ]),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticStyle: {
+              color: "red",
+              "grid-row": "4/5",
+              "grid-column": "6/7"
+            }
+          },
+          [_vm._v("残りの未流出資産券数" + _vm._s(_vm.asset_data[0]))]
+        ),
+        _vm._v(" "),
+        _c("p", { staticStyle: { "grid-row": "5/6", "grid-column": "6/7" } }, [
+          _vm._v("現在の投資受付額"),
+          _c("br"),
+          _vm._v(_vm._s(_vm.asset_data[1]))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticStyle: { "grid-row": "6/7", "grid-column": "5/6" } }, [
+          _vm._v("資産券保有数の順位"),
+          _c("br"),
+          _vm._v(_vm._s(_vm.asset_data[5]) + "  " + _vm._s(_vm.asset_data[4]))
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticStyle: { "grid-row": "4/5", "grid-column": "1/2" },
+            attrs: { type: "button" },
+            on: { click: _vm.selectAs }
+          },
+          [_vm._v("状況閲覧")]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('appp', 'PowndadAsset')
+@section('title', 'Pawn dadAsset')
 
 @section('content')
 <div class="container">
