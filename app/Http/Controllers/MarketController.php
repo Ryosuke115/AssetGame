@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Asset;
 use App\Account;
 use App\Market;
 use Illuminate\Http\Request;
@@ -58,5 +59,22 @@ class MarketController extends Controller
         } else {
             return redirect('/code');
         } 
+    }
+    
+    public function assets(Request $request) {
+        return Asset::all();
+    }
+    
+    public function marketStatus(Request $request) {
+        $select = $request->asset_select;
+        $select_name = DB::table('assets')->where('asset_name', $select)
+                  ->value('asset_name');
+        $select_sum = DB::table('assets')->where('asset_name', $select)
+                  ->value('asset_sum');
+        $high_trade = DB::table('assets')->where('asset_name', $select)
+                  ->value('high_price');
+        $low_trade = DB::table('assets')->where('asset_name', $select)
+                  ->value('low_price');
+        return [$select_name, $select_sum, $high_trade, $low_trade];
     }
 }

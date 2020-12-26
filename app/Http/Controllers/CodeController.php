@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 class CodeController extends Controller
 {
     public function index(Request $request) {
+        $userid = Auth::id();
         $items = Code::all();
         //$pinn = User::all();
         $pinn = date('D');
@@ -44,6 +45,7 @@ class CodeController extends Controller
         $time = Code::where('user_id', 2)->where('asset_number', 5)->value('created_at');
         
         return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time]);
+        
         
     }
  

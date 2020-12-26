@@ -40,6 +40,8 @@
 
 <div id="app">
     <my-component></my-component>
+    <works-component></works-component>
+    
 </div>
 
 

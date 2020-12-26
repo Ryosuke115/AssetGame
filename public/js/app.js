@@ -2023,10 +2023,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      select: ''
     };
   },
   methods: {
@@ -2047,6 +2056,109 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getTasks();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      selected: '',
+      assets: [],
+      asset_select: '',
+      asset_status: '',
+      lists: [],
+      detroit: []
+    };
+  },
+  methods: {
+    testOrder: function testOrder() {
+      var _this = this;
+
+      axios.get('/api/markets', {
+        params: {
+          id: '1'
+        }
+      }).then(function (response) {
+        _this.assets = response.data;
+        console.log(response.data);
+      })["catch"](function (reponse) {
+        console.log('error');
+      });
+    },
+    showMarket: function showMarket() {
+      var _this2 = this;
+
+      axios.post('/api/markets/select', {
+        asset_select: this.selected
+      }).then(function (response) {
+        _this2.asset_status = response.data;
+        _this2.lists = response.data;
+      });
+    },
+    dragList: function dragList(event, dragId) {
+      console.log(dragId);
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.setData('name', dragId);
+    },
+    dropList: function dropList(event, dropName) {
+      var dragName = event.dataTransfer.getData('name');
+      this.detroit.push(dropName);
+    }
+  },
+  computed: {
+    CategoryA: function CategoryA() {
+      return this.lists.filter(function (list) {
+        return list.catgory == 'A';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.testOrder();
   }
 });
 
@@ -37802,15 +37914,213 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.tasks, function(task) {
-      return _c("tr", [
-        _c("th", [_vm._v(_vm._s(task.id))]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(task.name))])
-      ])
-    }),
-    0
+    [
+      _vm._l(_vm.tasks, function(task) {
+        return _c("tr", [
+          _c("th", [_vm._v(_vm._s(task.id))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(task.name))])
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.select,
+              expression: "select"
+            }
+          ],
+          attrs: { id: "select", name: "select" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.select = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "0" } }, [_vm._v("買い")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("売り")])
+        ]
+      ),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.select))]),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.select == 0,
+              expression: "select == 0"
+            }
+          ]
+        },
+        [_vm._v("おいおい")]
+      ),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.select == 1,
+              expression: "select == 1"
+            }
+          ]
+        },
+        [_vm._v("ドラクエ")]
+      )
+    ],
+    2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("a", { attrs: { href: "/asset/invest" } }, [_vm._v("おす")]),
+    _vm._v(" "),
+    _c("p", [_vm._v("ここでは資産の市場状況を確認できます")]),
+    _vm._v(" "),
+    _c("p", [_vm._v("確認したい資産を選択")]),
+    _vm._v(" "),
+    _c("form", [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected,
+              expression: "selected"
+            }
+          ],
+          attrs: { id: "asset_select", name: "asset_select" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selected = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        _vm._l(_vm.assets, function(asset) {
+          return _c("option", [_vm._v(_vm._s(asset.asset_name))])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("button", { attrs: { type: "button" }, on: { click: _vm.showMarket } }, [
+      _vm._v("市況確認")
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        on: {
+          drop: function($event) {
+            return _vm.dropList($event, _vm.asset_status[0])
+          }
+        }
+      },
+      [
+        _c(
+          "p",
+          {
+            attrs: { draggable: "" },
+            on: {
+              dragstart: function($event) {
+                return _vm.dragList($event, _vm.asset_status[0])
+              }
+            }
+          },
+          [_vm._v("名前"), _c("br"), _vm._v(_vm._s(_vm.asset_status[0]))]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("今期のコイン受付額"),
+      _c("br"),
+      _vm._v(_vm._s(_vm.asset_status[1]))
+    ]),
+    _vm._v(" "),
+    _c("p", [_vm._v("高値"), _c("br"), _vm._v(_vm._s(_vm.asset_status[2]))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("安値"), _c("br"), _vm._v(_vm._s(_vm.asset_status[3]))]),
+    _vm._v(" "),
+    _c(
+      "h4",
+      {
+        on: {
+          drop: function($event) {
+            return _vm.dropList($event, _vm.asset_status[0])
+          },
+          dragover: function($event) {
+            $event.preventDefault()
+          },
+          dragenter: function($event) {
+            $event.preventDefault()
+          }
+        }
+      },
+      [
+        _vm._v("ドロップリスト\n"),
+        _vm._l(_vm.detroit, function(list) {
+          return _c("p", [_c("br"), _vm._v(_vm._s(list) + "\n ")])
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50009,6 +50319,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('my-component', __webpack_require__(/*! ./components/MyComponent.vue */ "./resources/js/components/MyComponent.vue")["default"]);
 Vue.component('asset-board', __webpack_require__(/*! ./components/AssetBoardComponent.vue */ "./resources/js/components/AssetBoardComponent.vue")["default"]);
+Vue.component('transact-board', __webpack_require__(/*! ./components/TransactAssetBoardComponent.vue */ "./resources/js/components/TransactAssetBoardComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50268,6 +50579,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyComponent_vue_vue_type_template_id_f79de9d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyComponent_vue_vue_type_template_id_f79de9d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TransactAssetBoardComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/TransactAssetBoardComponent.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2& */ "./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2&");
+/* harmony import */ var _TransactAssetBoardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactAssetBoardComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TransactAssetBoardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TransactAssetBoardComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactAssetBoardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TransactAssetBoardComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactAssetBoardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransactAssetBoardComponent.vue?vue&type=template&id=3a6354e2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactAssetBoardComponent_vue_vue_type_template_id_3a6354e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

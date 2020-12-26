@@ -3,6 +3,10 @@
 @section('title', 'Pawn dadAsset|注文')
 
 @section('content')
+<div id="app">
+ <transact-board></transact-board>
+   
+</div>
 
 <form action="/market" method="post">
  @csrf

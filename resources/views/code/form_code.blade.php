@@ -9,8 +9,10 @@
 @endsection
 
 @section('content')
-
-
+<div id="app">
+<asset-board></asset-board>
+</div>
+    
 <form action="/code/form" method="post">
  @csrf
  <input type="hidden" name="user_id" value="<?php echo $prove_user ?>">
