@@ -25,6 +25,8 @@ Vue.component('asset-board', require('./components/AssetBoardComponent.vue').def
 
 Vue.component('transact-board', require('./components/TransactAssetBoardComponent.vue').default);
 
+Vue.component('market-order-form',
+             require('./components/market_order_form.vue').default);
 
 
 

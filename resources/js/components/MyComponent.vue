@@ -1,18 +1,14 @@
  <template>
  <div>
-  <tr v-for="task in tasks">
-     <th>{{ task.id }}</th>
-     <td>{{ task.name }}</td>
-   </tr>
    
-   
-   <select id="select" name="select" v-model="select">
+   <select id="select" name="buy_sell" v-model="select">
     <option value=0>買い</option>
     <option value=1>売り</option>
+    <option value=2>ああ</option>
     </select>
 <p>{{ select }}</p>
 <p v-show="select == 0">おいおい</p>
-<p v-show="select == 1">ドラクエ</p>
+<p v-show="select == 1||2">ドラクエ</p>
  </div>
 </template>
  <script>

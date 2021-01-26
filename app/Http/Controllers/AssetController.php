@@ -52,10 +52,7 @@ class AssetController extends Controller
         $asset_number = $asset_id->all();
         $assets = $asset->all();*/
         $user_id = Auth::id();
-        return view('market.asset_invest_market', [
-                                                   'user_id' => $user_id,
-                                                   
-                                                  ]);
+        return view('market.asset_invest_market', ['user_id' => $user_id]);
     }
     
     public function asset_codecreate(Request $request) {
@@ -65,7 +62,7 @@ class AssetController extends Controller
         $invest_amount = $request->input('invest_amount');
         $asset_name = DB::table('assets')->where('id', $asset_number)->value('asset_name');
         
-        $record = Account::where('user_id', $user_id)//Accountテーブルから認証ユーザーの特定資産口座のカラムを格納
+        $record = Account::where('user_id', $user_id)//accountsテーブルから認証ユーザーの特定資産口座のカラムを格納
                   ->where('asset_number', $asset_number)->first();
         
         $stock_units = DB::table('assets')

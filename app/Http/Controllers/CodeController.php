@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Code;
 use App\User;
 use App\Account;
+use App\Market;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -27,6 +28,11 @@ class CodeController extends Controller
         $values = $beaff->all();//配列に変換
         $last = array_key_last($values);
         $beaf = 0;
+        $buy_sec = Market::where('asset_number', 3)
+               ->where('trade_type', 0)
+               ->orderBy('transact_amount', 'desc')
+               ->pluck('transact_amount');
+        $buy = $buy_sec->all();
         
         
         
@@ -44,7 +50,7 @@ class CodeController extends Controller
         
         $time = Code::where('user_id', 2)->where('asset_number', 5)->value('created_at');
         
-        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time]);
+        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time, 'buy' => $buy]);
         
         
     }
