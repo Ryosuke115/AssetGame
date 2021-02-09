@@ -7,6 +7,8 @@ use App\User;
 use App\Account;
 use App\Market;
 use App\Http\Controllers\Controller;
+use Datetime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 //use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +36,10 @@ class CodeController extends Controller
                ->pluck('transact_amount');
         $buy = $buy_sec->all();
         
+        $date = new Datetime();
+        $date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
+        $date->modify('+1 weeks');
+        
         
         
         for($i=0; $i<$last+1; $i++) {
@@ -50,7 +56,7 @@ class CodeController extends Controller
         
         $time = Code::where('user_id', 2)->where('asset_number', 5)->value('created_at');
         
-        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time, 'buy' => $buy]);
+        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time, 'buy' => $buy, 'date' => $date]);
         
         
     }

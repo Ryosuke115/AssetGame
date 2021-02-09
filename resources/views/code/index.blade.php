@@ -37,7 +37,7 @@
 <?php echo date('Y:D-H-i'); ?>
 <p>{{ var_dump($pin) }}</p>
 <p>{{ var_dump($buy) }}</p>
-
+<p>{{ var_dump($date) }}</p>
 <div id="app">
     <my-component></my-component>
     <works-component></works-component>

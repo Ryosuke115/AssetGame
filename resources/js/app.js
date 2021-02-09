@@ -28,6 +28,9 @@ Vue.component('transact-board', require('./components/TransactAssetBoardComponen
 Vue.component('market-order-form',
              require('./components/market_order_form.vue').default);
 
+Vue.component('dividend-button',
+             require('./components/DividendButtonComponent.vue').default);
+
 
 
 /**
