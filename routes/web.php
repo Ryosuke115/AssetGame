@@ -48,3 +48,4 @@ Route::get('asset/invest', 'AssetController@asset_invest_market');
 Route::post('asset/invest', 'AssetController@asset_codecreate');
 
 Route::get('dividend', 'FiscalController@dividend_view');
+Route::post('dividend', 'FiscalController@dividend_end');

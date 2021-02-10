@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Code;
+use App\Asset;
 use App\User;
 use App\Account;
 use App\Market;
@@ -89,6 +90,8 @@ class CodeController extends Controller
         $asset_number = $request->input('asset_number');        
         $invest_amount = $request->input('invest_amount');
         $asset_name = DB::table('assets')->where('id', $asset_number)->value('asset_name');
+        $fiscal_period = Asset::where('id', $asset_number)
+             ->value('fiscal_period');
         
         $record = Account::where('user_id', $user_id)//Accountテーブルから認証ユーザーの特定資産口座のカラムを格納
                   ->where('asset_number', $asset_number)->first();
@@ -99,7 +102,7 @@ class CodeController extends Controller
         
         DB::table('codes')
             ->insert(
-              ['user_id' => $user_id, 'asset_number' => $asset_number, 'invest_amount' => $invest_amount]
+              ['user_id' => $user_id, 'asset_number' => $asset_number, 'invest_amount' => $invest_amount, 'fiscal_period' => $fiscal_period]
         );
         
         DB::table('assets')
