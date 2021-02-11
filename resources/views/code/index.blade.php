@@ -38,6 +38,8 @@
 <p>{{ var_dump($pin) }}</p>
 <p>{{ var_dump($buy) }}</p>
 <p>{{ var_dump($date) }}</p>
+<p>{{ var_dump($time) }}</p>
+<p>{{ $utin }}</p>
 <div id="app">
     <my-component></my-component>
     <works-component></works-component>

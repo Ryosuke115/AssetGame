@@ -24,6 +24,7 @@
 @endif
 
 <p>{{var_dump($dividend_codes)}}</p>
+<p>{{var_dump($update)}}</p>
 <div id="app">
 
 </div>

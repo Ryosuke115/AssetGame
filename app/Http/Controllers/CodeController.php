@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Services\Util;
+
 class CodeController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request, Util $util) {
         $userid = Auth::id();
         $items = Code::all();
         //$pinn = User::all();
@@ -54,10 +56,11 @@ class CodeController extends Controller
         //$beaf = $beaff[0] + $beaff[1];
         $bee = 0;
         $bea = $beaff[1];
+        $utin = $util->getMessage();
         
-        $time = Code::where('user_id', 2)->where('asset_number', 5)->value('created_at');
+        $time = Code::where('user_id', 2)->where('asset_number', 1)->value('invest_amount');
         
-        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time, 'buy' => $buy, 'date' => $date]);
+        return view('code.index', ['items' => $items, 'pin' => $pinn, 'beaf' => $beaf, 'beaff' => $beaff, 'bee' => $bee, 'beal' => $bea, 'last' => $last, 'time' => $time, 'buy' => $buy, 'date' => $date, 'utin' => $utin]);
         
         
     }

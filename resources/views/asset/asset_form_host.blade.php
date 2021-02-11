@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('appp', '資産設定フォーム')
+@section('title', '資産設定フォーム')
 
 @section('menubar')
  @parent
@@ -14,6 +14,7 @@
         <tr><th>所属国(Country)</th><td><input type="text" name="country"></td></tr>
         <tr><th>資産の名前(Asset_name)</th><td><input type="text" name="asset_name"></td></tr>
         <tr><th>現段階での保有コイン額(asset_sum)</th><td><input type="number" name="asset_sum"></td></tr>
+        <tr><th>初めの決算日付</th><td><input type="date" name="fiscal_period"></td></tr>
            <input type="submit" value="送信">
        </form>
 

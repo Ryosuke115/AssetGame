@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Events\TaskAdded;
+use App\Services\Util;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use App\Events\TaskAdded;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/util', function(Util $util) {
+    return $util->getMessage();
 });
 
 Auth::routes();

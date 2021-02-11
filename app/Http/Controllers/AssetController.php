@@ -29,12 +29,13 @@ class AssetController extends Controller
         $country = $request->input('country');
         $asset_name = $request->input('asset_name');
         $asset_sum = $request->input('asset_sum');
-       
+        $fiscal = $request->input('fiscal_period');
+        $fiscal_period = $fiscal . ' 00:00:00';
         
         //$asset->fill($form)->save();
         DB::table('assets')
             ->insert(
-                ['country' => $country, 'asset_name' => $asset_name, 'asset_sum' => $asset_sum]
+                ['country' => $country, 'asset_name' => $asset_name, 'asset_sum' => $asset_sum, 'fiscal_period' => $fiscal_period]
         );
         
         return redirect('/asset/host');
@@ -61,6 +62,8 @@ class AssetController extends Controller
         $asset_number = $request->input('asset_number');
         $invest_amount = $request->input('invest_amount');
         $asset_name = DB::table('assets')->where('id', $asset_number)->value('asset_name');
+        $fiscal_period = Asset::where('id', $asset_number)->value('fiscal_period');
+        
         
         $record = Account::where('user_id', $user_id)//accountsテーブルから認証ユーザーの特定資産口座のカラムを格納
                   ->where('asset_number', $asset_number)->first();
@@ -71,7 +74,7 @@ class AssetController extends Controller
         
         DB::table('codes')
             ->insert(
-              ['user_id' => $user_id, 'asset_number' => $asset_number, 'invest_amount' => $invest_amount]
+              ['user_id' => $user_id, 'asset_number' => $asset_number, 'invest_amount' => $invest_amount, 'fiscal_period' => $fiscal_period]
         );
         
         DB::table('assets')

@@ -16,7 +16,6 @@ class FiscalController extends Controller
         $jst_time = new Datetime();
         $jst_time->setTimeZone(new DateTimeZone('Asia/Tokyo'));
         $after = new Datetime('2020/01/09 12:12:12');
-        $haitou = 0;
         $user_id = Auth::id();
         //決算日当日の資産の名前
         $dividend = Asset::where('fiscal_period', '<=', $jst_time)
@@ -35,11 +34,35 @@ class FiscalController extends Controller
         
         //配列への変換
         $dividend_codes = $dividend_code->all();
+        
+        //日付の更新
+        $update = Asset::where('fiscal_period', '<=', $jst_time)
+                           ->value('fiscal_period');
+        $updates = new DateTime($update);
+        $update_second = new DateTime($update);
+        $updates->setTimeZone(new DateTimeZone('Asia/Tokyo'));
+        $update_second->setTimeZone(new DateTimeZone('Asia/Tokyo'));
+        
+        $neo_update = $updates->modify('+1 day');
+        
+        //$period = Asset::where('fiscal_period', '<=', $jst_time)
+                           //->pluck('fiscal_period');
+        //$periods = $period->all();
+        $update_day = $update_second->modify('+5 day');
+        
+        
+        if($jst_time >= $neo_update) {
+                DB::table('assets')->where('fiscal_period', '<', $neo_update)
+                                   ->update(['fiscal_period' => $update_day]);
+        }
+        
 
         return view('fiscal.dividend', ['jst_time' => $jst_time, 
                                         'after' => $after, 
                                         'dividend_asset' => $dividend_asset, 
-                                        'dividend_codes' => $dividend_codes]);
+                                        'dividend_codes' => $dividend_codes,
+                                        'update' => $neo_update,
+                                       ]);
     }
     //post送信による配当の受け取り    
     public function dividend_end(Request $request) {

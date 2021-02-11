@@ -25,6 +25,7 @@
      <option value="4" selected>製鉄</option>
      <option value="5">国防力</option>
      <option value="6">オン・アニー</option>
+     <option value="7">陶器生産</option>
      </select></p>
     <tr><td>投資額</td><th><input type="number" name="invest_amount"></th></tr>
     <input type="submit" value="ペイします">
