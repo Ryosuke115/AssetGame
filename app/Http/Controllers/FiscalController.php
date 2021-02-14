@@ -51,7 +51,7 @@ class FiscalController extends Controller
         $update_day = $update_second->modify('+5 day');
         
         
-        if($jst_time >= $neo_update) {
+        if($jst_time >= $update) {
                 DB::table('assets')->where('fiscal_period', '<', $neo_update)
                                    ->update(['fiscal_period' => $update_day]);
         }

@@ -23,8 +23,12 @@
 </form>
 @endif
 
-<p>{{var_dump($dividend_codes)}}</p>
+@foreach($dividend_codes as $value)
+<p>{{ value[2] }}</p>
+@endforeach
+
 <p>{{var_dump($update)}}</p>
+
 <div id="app">
 
 </div>
