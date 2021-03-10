@@ -1,7 +1,9 @@
 <template>
  <div>
    
-<a href="/asset/invest">おす</a>
+<a href="/asset/invest">投資券取引ページへ</a>
+
+
 
 
 <p>ここでは資産の市場状況を確認できます</p>
